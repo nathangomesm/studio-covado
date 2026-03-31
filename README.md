@@ -29,8 +29,8 @@ Um sistema web completo (CMS) desenvolvido com **Python e Django** para gerencia
 
 2. Crie e ative o ambiente virtual:
 python -m venv venv
-# Windows: venv\Scripts\activate
-# Linux/Mac: source venv/bin/activate
+* Windows: venv\Scripts\activate
+* Linux/Mac: source venv/bin/activate
 
 3. Instale as dependências:
 pip install django
