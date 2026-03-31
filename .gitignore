@@ -1,0 +1,14 @@
+# Ambientes Virtuais
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Banco de Dados Local
+db.sqlite3
+
+# Arquivos de Mídia (Uploads)
+media/
+
+# Variáveis de Ambiente (Segurança)
+.env

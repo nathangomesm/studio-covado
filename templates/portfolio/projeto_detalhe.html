@@ -1,0 +1,71 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}
+  {{ projeto.titulo }}
+{% endblock %}
+
+{% block content %}
+  <section class="projeto-hero" style="background-image: url('{{ projeto.imagem_principal.url }}');">
+    <div class="overlay-hero"></div>
+    <div class="container hero-projeto-content fade-in-section">
+      <p class="projeto-categoria">{{ projeto.categoria.nome }}</p>
+      <h1 class="projeto-titulo">{{ projeto.titulo }}</h1>
+    </div>
+  </section>
+
+  <section class="secao-padrao">
+    <div class="container projeto-container">
+      <div class="projeto-ficha fade-in-section">
+        <h3>Ficha Técnica</h3>
+        <ul class="lista-ficha">
+          <li>
+            <strong>Cliente:</strong> Confidencial
+          </li>
+          <li>
+            <strong>Ano:</strong> {{ projeto.data_publicacao|date:'Y' }}
+          </li>
+          <li>
+            <strong>Localização:</strong> São Paulo, SP
+          </li> <li>
+            <strong>Área:</strong> 450m²
+          </li>
+          <li>
+            <strong>Status:</strong> Concluído
+          </li>
+        </ul>
+        <a href="{% url 'home' %}" class="btn-voltar">← Voltar para Projetos</a>
+      </div>
+
+      <div class="projeto-texto fade-in-section">
+        <h3>Sobre o Projeto</h3>
+        <p>{{ projeto.descricao|linebreaksbr }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao-padrao bg-areia">
+    <div class="container">
+      <h3 class="titulo-secao" style="text-align: center;">Galeria</h3>
+      <div class="galeria-grid">
+        {% for item in projeto.imagens.all %}
+          <div class="galeria-item fade-in-section">
+            <a href="{{ item.imagem.url }}" class="glightbox" data-gallery="galeria-projeto"><img src="{{ item.imagem.url }}" alt="Galeria {{ projeto.titulo }}" /></a>
+          </div>
+        {% empty %}
+          <p style="grid-column: 1/-1; text-align: center; color: #999;">Galeria em breve.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          const lightbox = GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true,
+            zoomable: true
+          });
+        });
+    </script>
+{% endblock %}

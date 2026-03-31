@@ -1,0 +1,477 @@
+/* --- 1. Variáveis & Tipografia (A Base) --- */
+:root {
+    --bege-creme: #E5E0CF;
+    --areia: #CDC6B6;
+    --oliva: #796B57;
+    --carvalho: #3E2929;
+    --branco: #ffffff;
+    --preto-suave: #1a1a1a;
+    
+    /* Fontes */
+    --fonte-titulos: 'Playfair Display', serif;
+    --fonte-textos: 'Host Grotesk', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bege-creme);
+    color: var(--carvalho);
+    font-family: var(--fonte-textos);
+    line-height: 1.8; /* Aumentei para dar mais elegância à leitura */
+    font-weight: 300; /* Letras mais finas = mais sofisticação */
+    overflow-x: hidden;
+}
+
+/* Títulos gerais */
+h1, h2, h3, h4 {
+    font-family: var(--fonte-titulos);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.4s ease; }
+img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Container mais largo para dar imponência */
+.container { width: 88%; max-width: 1400px; margin: 0 auto; }
+
+/* --- 2. Navbar (Transparente e Flutuante) --- */
+.navbar {
+    padding: 1.5rem 0; /* Reduzi um pouco para ficar mais elegante com cor de fundo */
+    position: absolute; /* Continua sobrepondo o início da página */
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    
+    /* AQUI ESTÁ A MUDANÇA: */
+    background-color: var(--areia); /* Usando a variável que você definiu (#CDC6B6) */
+    
+    /* Adicionei uma sombra suave para destacar a barra do resto do site */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+    
+    /* Opcional: Se quiser remover aquela linha de borda que colocamos antes, pode apagar o border-bottom */
+    border-bottom: none; 
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 150px; /* Ajuste a altura da logo aqui */
+    width: auto;
+    display: block;
+}
+
+.nav-links { 
+    display: flex; 
+    align-items: center; /* Alinha verticalmente */
+    gap: 0; /* Removemos o gap para usar bordas */
+    list-style: none; /* Garante que não apareçam bolinhas */
+}
+
+/* Criando a barra vertical usando o LI (item da lista) */
+.nav-links li {
+    padding: 0 1.5rem; /* Espaço nas laterais de cada palavra */
+    border-right: 1px solid var(--carvalho); /* A BARRA VERTICAL AQUI */
+    height: 1.1rem; /* Altura da barra (ajuste se quiser maior/menor) */
+    display: flex;
+    align-items: center;
+    line-height: 1;
+}
+
+/* Remove a barra do último item (Contato), senão fica sobrando */
+.nav-links li:last-child {
+    border-right: none;
+    padding-right: 0; /* Opcional: remove espaço extra na direita do último */
+}
+
+.nav-links a {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 400;
+    position: relative;
+    color: inherit; /* Herda a cor do pai */
+    display: block; /* Garante área de clique correta */
+}
+
+/* Mantendo seu efeito de sublinhado elegante */
+.nav-links a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--carvalho);
+    transition: width .3s;
+    margin-top: 5px;
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+/* --- 3. Hero Section (Impacto Visual) --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    color: var(--branco); /* Texto branco para contrastar com a foto */
+    
+    /* --- A Mágica do Parallax --- */
+    /* Substitua a URL abaixo por uma foto real do escritório depois */
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../img/page_principal_aspen.jpeg');
+    background-attachment: fixed; /* Isso faz a imagem ficar parada no scroll */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Ajuste importante: Como o fundo agora é foto escura, o texto tem que ser claro */
+.hero .frase-efeito {
+    color: var(--branco); 
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.hero .subtitulo-hero {
+    color: var(--bege-creme);
+    border-color: var(--bege-creme);
+}
+
+.frase-efeito {
+    font-size: clamp(3rem, 6vw, 5.5rem); /* Tamanho responsivo gigante */
+    color: var(--carvalho);
+    margin-bottom: 2rem;
+    letter-spacing: -0.03em; /* Letras juntinhas nos títulos grandes */
+}
+
+.subtitulo-hero {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em; /* Letras espaçadas no subtítulo */
+    color: var(--oliva);
+    margin-top: 1rem;
+    border-top: 1px solid var(--oliva);
+    display: inline-block;
+    padding-top: 1.5rem;
+}
+
+/* --- 4. Seção Sobre Nós (Diagramação Editorial) --- */
+.secao-padrao { padding: 8rem 0; }
+
+.sobre-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Texto maior que a imagem */
+    gap: 6rem;
+    align-items: center;
+}
+
+.titulo-secao {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+    color: var(--carvalho);
+    position: relative;
+    display: inline-block;
+}
+
+.sobre-texto p {
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+    color: #5a4a4a; /* Um cinza quente para leitura */
+    text-align: left; /* Justificado as vezes cria buracos, esquerda é mais moderno */
+}
+
+.moldura-imagem {
+    height: 400px;
+    background-color: var(--areia);
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- 5. Projetos & Filtros (Estilo Galeria de Arte) --- */
+.secao-header {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.btn-filtro {
+    background: transparent;
+    border: none;
+    font-family: var(--fonte-textos);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    color: var(--oliva);
+    opacity: 0.6;
+    transition: all 0.3s;
+    padding-bottom: 5px;
+    border-bottom: 1px solid transparent;
+}
+
+.btn-filtro:hover, .btn-filtro.ativo {
+    opacity: 1;
+    color: var(--carvalho);
+    border-bottom: 1px solid var(--carvalho);
+}
+
+.grid-projetos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas grandes por padrão */
+    gap: 4rem 2rem; /* Mais espaço vertical entre projetos */
+}
+
+.card-projeto {
+    background: transparent;
+    cursor: pointer;
+}
+
+.img-container {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.img-container img {
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Movimento suave premium */
+    filter: grayscale(20%); /* Levemente desaturado por padrão */
+}
+
+.card-projeto:hover img {
+    transform: scale(1.03); /* Zoom bem leve */
+    filter: grayscale(0%);
+}
+
+.card-info h4 {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+    color: var(--carvalho);
+}
+
+.card-info p {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--oliva);
+}
+
+/* --- 6. Rodapé Minimalista --- */
+footer {
+    padding: 4rem 0;
+    background-color: var(--carvalho);
+    color: var(--bege-creme);
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+/* --- Animações --- */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Mobile --- */
+/* Estilo do botão hambúrguer */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--carvalho);
+    transition: 0.3s;
+}
+
+/* Regras para Celular */
+@media (max-width: 768px) {
+    .hamburger { display: flex; z-index: 1001; }
+    
+    /* O menu vira uma gaveta lateral ou tela cheia */
+    .nav-links {
+        display: none; /* Escondido por padrão */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--bege-creme);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    /* Quando o JavaScript adicionar a classe 'active', o menu aparece */
+    .nav-links.active {
+        display: flex;
+        opacity: 1;
+    }
+    
+    /* Efeito de X no hambúrguer quando ativo */
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+}
+
+.btn-whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 2000;
+    transition: transform 0.3s;
+}
+
+.btn-whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #20BA5A;
+}
+
+/* --- Página de Detalhes do Projeto --- */
+
+/* Hero Específico */
+.projeto-hero {
+    height: 70vh; /* Um pouco menor que a home */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end; /* Texto fica embaixo */
+    padding-bottom: 4rem;
+}
+
+.overlay-hero {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); /* Gradiente para ler o texto */
+}
+
+.hero-projeto-content {
+    position: relative;
+    z-index: 2;
+    color: var(--branco);
+}
+
+.projeto-categoria {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.projeto-titulo {
+    font-size: 3.5rem;
+    color: var(--branco);
+}
+
+/* Layout Ficha + Texto */
+.projeto-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Coluna da direita é o dobro da esquerda */
+    gap: 4rem;
+}
+
+.projeto-ficha h3, .projeto-texto h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--carvalho);
+    border-bottom: 1px solid var(--oliva);
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+.lista-ficha li {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.lista-ficha strong { color: var(--carvalho); }
+
+.projeto-texto p {
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: #444;
+    text-align: justify;
+}
+
+.btn-voltar {
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--oliva);
+}
+.btn-voltar:hover { color: var(--carvalho); margin-left: -5px; }
+
+/* Galeria Grid (Estilo Masonry/Mosaico) */
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.galeria-item {
+    height: 400px; /* Altura fixa para alinhar */
+    overflow: hidden;
+}
+
+.galeria-item img {
+    transition: transform 0.5s;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.galeria-item:hover img { transform: scale(1.05); }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .projeto-container { grid-template-columns: 1fr; gap: 3rem; }
+    .projeto-titulo { font-size: 2.5rem; }
+    .galeria-grid { grid-template-columns: 1fr; }
+    .galeria-item { height: 300px; }
+}

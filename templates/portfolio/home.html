@@ -1,0 +1,76 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}
+  Engenharia e Interiores
+{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="hero-content fade-in-section">
+      <h2 class="frase-efeito">Feito na medida<br />do seu viver.</h2>
+      <p class="subtitulo-hero">Transformando lares em legados.</p>
+    </div>
+  </section>
+
+  <section id="sobre" class="secao-padrao bg-areia">
+    <div class="container sobre-container">
+      <div class="sobre-texto fade-in-section">
+        <h3 class="titulo-secao">Studio Côvado&copy;</h3>
+        <p>O Studio Côvado nasceu do desejo de criar uma arquitetura em escala humana, onde cada projeto é pensado para refletir a história e a essência de quem habita o espaço.</p>
+        <p>A mudança de nome e posicionamento surge da necessidade de representar não apenas uma pessoa, mas uma equipe dedicada a transformar lares em legados.</p>
+        <p>
+          Inspirado pelo <strong>“côvado”</strong>, antiga medida baseada no corpo humano e carregada de significado bíblico, o estúdio une técnica, propósito e autenticidade. Sua missão é oferecer projetos atemporais, com precisão e alma, que valorizam a conexão entre pessoas e seus lares.
+        </p>
+      </div>
+        <div class="sobre-imagem fade-in-section">
+          <div class="moldura-imagem">
+            <img src="media\projetos\fotos_equipe\_MG_8593.jpg" alt="Renderização do Projeto">
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <section id="projetos" class="secao-padrao">
+    <div class="container">
+      <div class="secao-header fade-in-section">
+        <h3 class="titulo-secao">Nossos Projetos</h3>
+
+        <div class="filtros">
+          <button class="btn-filtro ativo" onclick="filtrarProjetos('todos', this)">Todos</button>
+          {% for cat in categorias %}
+            <button class="btn-filtro" onclick="filtrarProjetos('{{ cat.id }}', this)">{{ cat.nome }}</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="grid-projetos">
+        {% for projeto in projetos %}
+          <a href="{% url 'detalhe_projeto' projeto.id %}">
+            <div class="card-projeto fade-in-section" data-categoria="{{ projeto.categoria.id }}">
+              <div class="img-container">
+                <img src="{{ projeto.imagem_principal.url }}" alt="{{ projeto.titulo }}" />
+                <div class="overlay">
+                  <span class="ver-mais">Ver Projeto</span>
+                </div>
+              </div>
+              <div class="card-info">
+                <h4>{{ projeto.titulo }}</h4>
+                <p>{{ projeto.categoria.nome }}</p>
+              </div>
+            </div>
+          </a>
+        {% empty %}
+          <p>Em breve novos projetos.</p>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="secao-padrao bg-contato">
+    <div class="container fade-in-section">
+      <h3 class="titulo-secao">Vamos conversar?</h3>
+      <p>Entre em contato para transformar seu sonho em projeto.</p>
+      <a href="https://wa.me/5500000000000" class="btn-cta">Iniciar Atendimento no WhatsApp</a>
+    </div>
+  </section>
+{% endblock %}
