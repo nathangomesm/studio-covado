@@ -1,0 +1,75 @@
+# Criar repositório no Git.
+
+Digite o comando abaixo e aperte Enter: (gitignore é para ignorar 
+informações sensíveis como banco, acessos locais).
+
+code .gitignore
+
+E cole:
+# Ambientes Virtuais
+venv/
+env/
+__pycache__/
+*.pyc
+
+# Banco de Dados Local
+db.sqlite3
+
+# Arquivos de Mídia (Uploads)
+media/
+
+# Variáveis de Ambiente (Segurança)
+.env
+
+----------------------------------------------------
+
+Passo 1: Criar o repositório no site do GitHub
+Acesse o GitHub e faça seu login.
+
+No canto superior direito, clique no ícone de + e depois em New repository (ou no botão verde "New" na tela inicial).
+
+Repository name: Digite studio-covado (ou o nome que preferir).
+
+Description (opcional): Pode colocar "Sistema de portfólio dinâmico para arquitetura feito em Django".
+
+⚠️ MUITO IMPORTANTE: Deixe as opções "Add a README file" e "Add .gitignore" DESMARCADAS. Nós já criamos isso localmente. Se você marcar, vai dar conflito.
+
+Clique no botão verde Create repository.
+
+Passo 2: Conectar o seu VS Code ao GitHub
+Assim que você criar o repositório, o GitHub vai te mostrar uma tela com várias opções de comandos. Nós vamos usar a segunda opção, chamada "…or push an existing repository from the command line".
+
+Volte para o terminal do seu VS Code e cole estes três comandos (um de cada vez, apertando Enter):
+
+1. Cria o link entre a sua máquina e o GitHub:
+(Atenção: substitua SEU_USUARIO e NOME_DO_REPO pelo link exato que o GitHub te deu na tela)
+Bash
+git remote add origin https://github.com/SEU_USUARIO/NOME_DO_REPO.git
+
+2. Muda o nome da ramificação principal de "master" para "main" (que é o padrão moderno):
+Bash
+git branch -M main
+
+3. Envia os arquivos para o GitHub:
+Bash
+git push -u origin main
+
+---------------------------------------------------
+Este é o Ciclo Diário que você vai usar sempre que finalizar uma nova etapa ou correção:
+
+O Fluxo de Trabalho do Portfólio
+Sempre que o código estiver funcionando bem no seu navegador e você quiser salvar aquele progresso no GitHub, abra o terminal e rode apenas estes três comandos em sequência:
+
+Prepara as mudanças:
+Bash
+git add .
+
+Bate a "foto" explicando o que mudou:
+Bash
+git commit -m "feat: adicionado background de Aspen e efeito parallax na Home"
+(Dica de ouro para portfólio: use prefixos profissionais como feat: para novas funcionalidades, fix: para correção de bugs, ou style: para mudanças puramente visuais no CSS).
+
+Envia para a nuvem:
+
+Bash
+git push

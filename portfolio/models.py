@@ -14,6 +14,12 @@ class Projeto(models.Model):
     imagem_principal = models.ImageField(upload_to='projetos/')
     data_publicacao = models.DateField(auto_now_add=True)
     ativo = models.BooleanField(default=True)
+    
+    # --- NOVOS CAMPOS: FICHA TÉCNICA ---
+    cliente = models.CharField(max_length=100, default="Confidencial")
+    localizacao = models.CharField(max_length=200, default="A definir", help_text="Ex: Lages, SC")
+    area = models.CharField(max_length=50, default="A definir", help_text="Ex: 450m²")
+    status = models.CharField(max_length=100, default="Concluído")
 
     def __str__(self):
         return self.titulo
